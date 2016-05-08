@@ -1,0 +1,29 @@
+
+{% extends 'bolig/base.html' %}
+{% block content %}
+<!--	<h2 style= "background-color: #eee; margin-left:0; padding-left:0"></h2>--><hr>
+
+	<div class='col-md-9;'>
+	<div style='-webkit-column-width: 30em ;
+    -webkit-column-gap: 2em;
+    -webkit-column-count:3; width: 80%;margin-left: 20px'>	
+	{% for a, b in  pakk %}
+		{% if forloop.counter|divisibleby:'14' %}
+		<div style= 'column-span: all;'></div>
+		{% endif %}
+		<div style='-webkit-column-break-inside: avoid;'>
+		<img style= 'float: left;' src="/static/pics{{b | slice:'2:'}}"/img>
+		<span style = 'float:right'>{{a.created_date|date:'d M Y'}} </span>	 
+		<b><h3><i>{{a.kategori}}</b></i></h3>
+	    <h4><a href="{% url 'bolig.views.innlegg_detail' pk=a.pk %}">{{a.title}}</a></h4><br>
+		<p class = 'lead' style= 'font-family: Georgia; font-size: 12pt;'>
+	  	{{a.tekst|safe|linebreaksbr|truncatewords:200}}
+		</p>
+		<a href="{% url 'bolig.views.innlegg_detail' pk=a.pk %}">Kommentarer: {{ a.svar.count }}</a> 
+		<hr>
+		</div>
+	{% endfor %}
+	</div>
+	</div>
+
+{% endblock %}	

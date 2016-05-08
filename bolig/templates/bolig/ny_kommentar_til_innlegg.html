@@ -1,0 +1,12 @@
+{% extends 'bolig/base.html' %}
+
+{% block content %}
+	<div style='width:60%; padding-left: 30px;'>
+    <h1>Ny kommentar</h1>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <span style= 'position: fixed; margin-left: 0px'><button type="submit" class="save btn btn-default">Send</button></span>
+		
+    </form>
+	</div>
+{% endblock %}

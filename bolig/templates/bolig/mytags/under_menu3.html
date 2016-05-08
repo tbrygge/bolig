@@ -1,0 +1,5 @@
+<ul class="dropdown-menu">
+		{% for item in undermenu3 %}
+			<li><a href="{% url 'bolig.views.person_edit' pk=item.pk  %}" style='font-size: 12pt;font-weight: bold;'>{{ item.fnavn }}&nbsp {{item.enavn}}</a></li>
+		{% endfor %}
+</ul>

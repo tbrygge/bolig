@@ -1,0 +1,7 @@
+<ul class="dropdown-menu">
+        <li><a href="{% url 'bolig.views.vis_innlegg' 'alle' %}" style='font-size: 12pt; font-weight: bold;'>vis alle</a></li>
+		{% for item in undermenu2 %}
+			<li><a href="{% url 'bolig.views.vis_innlegg' item.kat %}" style='font-size: 12pt; font-weight: bold;'>{{ item.kat }}</a></li>
+		{% endfor %}
+		
+</ul>

@@ -1,0 +1,37 @@
+{% extends 'bolig/base.html' %}
+
+{% block content %}
+	
+	<div class= 'post' style= 'display: block;width: 60%;margin-left: 30px;font-family: Georgia; font-weight: 12pt'><br>
+	<div class="date">
+		{{ innlegg.created_date|date:'d M Y' }}			
+	</div>
+	{% if user.is_authenticated and not "sameiere" in request.user.groups.all|lower %}
+		<div style= 'margin-top: 40px'>
+		<a class="btn btn-default" href="{% url 'innlegg_edit' pk=innlegg.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+		<a class="btn btn-default" href="{% url 'innlegg_fjern' pk=innlegg.pk %}"><span  class="glyphicon glyphicon-remove"></span></a>
+		</div>
+
+	{% endif %}	
+	<h2 style= "background-color: #eee; margin-left: 0px;">{{innlegg.title|safe}}</h2><br>
+		<p>{{ innlegg.tekst|safe|linebreaks }}</p>
+	</div>
+	<hr>
+	<a class="btn btn-default"style ='margin-left: 30px' href="{% url 'ny_kommentar_til_innlegg' pk=innlegg.pk %}">Ny kommentar</a>
+    {% for kommentar in innlegg.svar.all %}
+		
+		<div class="comment" style= 'display: block;width: 60%;margin-left: 30px;font-family: Georgia; font-size: 12pt'>
+		<div class="date">
+			{{ kommentar.created_date|date:'d M Y' }}				
+		</div>
+		{% if user.is_authenticated and not "sameiere" in request.user.groups.all|lower %}
+			<a class="btn btn-default" href="{% url 'kommentar_fjern' pk=kommentar.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+		{% endif %}
+			<strong>{{ kommentar.author }}</strong>
+			<p>{{ kommentar.text|linebreaks|safe }}</p>
+		</div>
+		
+	{% empty %}
+		<p>Ingen kommentarer :(</p>
+	{% endfor %}
+{% endblock %}	

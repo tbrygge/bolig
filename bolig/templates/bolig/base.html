@@ -1,0 +1,61 @@
+{% load staticfiles %}
+{% load under_plukk %}
+<html>
+    <head>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+		<link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="{% static 'css/bolig.css' %}">
+        <title>Tananger Brygge </title>
+
+		
+    </head>
+	<body>
+		<div class="page-header"style = 'height: 110px;'>
+			{% if user.is_authenticated %}								
+				<a href="{% url 'django.contrib.auth.views.logout' %}"><span class= 'btn btn-mini' type = 'button' style= 'background: white; color: #28578A; float: right; margin-right: 40px; margin-top: 0px'>Logg ut</span></a>	
+				<a href="{% url 'django.contrib.auth.views.password_change' %}"><span class= 'btn btn-mini' type = 'button' style= 'background: white; color: #28578A; float: right; margin-right: 2px; margin-top: 0px'>bytt passord</span></a>
+				{% if user.username|length_is:'4' %}
+					<div class='btn btn-group' style= 'padding: 0px; float:right;'>
+					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style= 'background: white; color: #28578A; float: right; margin-right: 0px; margin-top: -1px;'> persondata
+					<span class="caret"></span>
+					</button>
+					{% under_menu3 user.username %}
+					</div>
+				{% endif %}		
+			{% else %}
+				<a href="{% url 'django.contrib.auth.views.login' %}"><span class= 'btn btn-mini' type = 'button' style= 'background: white; color: #28578A; float: right; margin-right: 40px; margin-top: 0px'>Logg inn</span></a>	
+			{% endif %}
+			<h1 style='margin-top:0'>Tananger Brygge</h1>			
+			<div class='btn btn-group' style= 'padding: 0px; float:left;'>
+			<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style= 'margin-left: 10px; margin-bottom: 0px;'> Linker 
+			<span class="caret"></span>
+			</button>
+			{% under_menu %}
+			</div>
+			<div class='btn btn-group' style= 'padding: 0px; float:left;'>
+			<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style= 'margin-left: -5px; margin-bottom: 0px;'> informasjon
+			<span class="caret"></span>
+			</button>
+			{% under_menu2 %}
+			</div>
+			
+			{% if user.is_authenticated %}
+				<a href="{% url 'nytt_innlegg' %}" class="top-menu"><span class="btn btn-primary" style= 'margin-left: -3px; margin-bottom: -28px;'>nytt innlegg</span></a>							
+			{% endif %}
+			<a href="{% url 'bolig.views.vis_styret' %}" class="top-menu"><span class="btn btn-primary" style = 'margin-left: 10px;margin-bottom: -28px'>styret</span></a>
+			<a href="{% url 'bolig.views.vis_styret' %}" class="top-menu"><span class="btn btn-primary" style='margin-left:-5px;margin-bottom: -28px'>referater</span></a>
+			<a href="{% url 'bolig.views.list_bolig' %}" class="top-menu"><span class="btn btn-primary" style='margin-left:-5px; margin-bottom: -28px'>seksjonene</span></a>
+			<a href="{% url 'bolig.views.vis_det' '/static/pics/baater.jpg' %}" class="top-menu"><span class ="btn btn-primary" style='margin-left:-5px; margin-bottom: -28px'>baat/boder</span></a>
+			<a href= '//{{request.get_host}}/static/docs/vedtektene.htm' class="top-menu"><span class="btn btn-primary" style='margin-left:-5px; margin-bottom: -28px'>vedtekter</span></a>
+			<a href='//{{request.get_host}}/static/docs/hus3.html' class="top-menu"><span class="btn btn-primary" style='margin-left:-5px; margin-bottom: -28px'>husorden</span></a>	
+			<div> 
+		
+			{% block content %}
+			{% endblock %}
+       			
+		<div class = 'page-footer'> <h1 style ='float:right; margin-top: -10px;'>Per G. Soiland</h1></div>
+	</body>
+</html>

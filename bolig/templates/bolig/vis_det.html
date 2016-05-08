@@ -1,0 +1,10 @@
+
+{% extends 'bolig/base.html' %}
+{% block content %}
+    {% if tekst|slice:'-3:' == 'jpg' or tekst|slice:'-3:' == 'png' %}
+		<img src="{{tekst}}"/>
+	{% else %}
+		<span><a href="{{tekst}}">  </a></span>
+	{% endif %} 
+	    	
+{% endblock %}	

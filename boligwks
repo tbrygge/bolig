@@ -1,0 +1,49 @@
+<NotepadPlus>
+    <Project name="bolig">
+        <Folder name="bo">
+            <File name="bo\__init__.py" />
+            <File name="bo\settings.py" />
+            <File name="bo\urls.py" />
+            <File name="bo\wsgi.py" />
+        </Folder>
+        <Folder name="bolig">
+            <File name="bolig\__init__.py" />
+            <File name="bolig\admin.py" />
+            <File name="bolig\apps.py" />
+            <File name="bolig\models.py" />
+            <File name="bolig\tests.py" />
+            <File name="bolig\urls.py" />
+            <File name="bolig\views.py" />
+            <File name="bolig\forms.py" />
+            <Folder name="static">
+                <Folder name="css">
+                    <File name="bolig\static\css\bolig.css" />
+                </Folder>
+            </Folder>
+            <Folder name="templates">
+                <Folder name="registration">
+                    <File name="bolig\templates\registration\login.html" />
+                </Folder>
+                <Folder name="bolig">
+                    <File name="bolig\templates\bolig\base.html" />
+                    <File name="bolig\templates\bolig\list_styret.html" />
+                    <File name="bolig\templates\bolig\list_bolig.html" />
+                    <File name="bolig\templates\bolig\syn_moter.html" />
+                    <File name="bolig\templates\bolig\vis_det.html" />
+                    <File name="bolig\templates\bolig\vis_alle.html" />
+                    <File name="bolig\templates\bolig\innlegg_detail.html" />
+                    <File name="bolig\templates\bolig\innlegg_edit.html" />
+                    <File name="bolig\templates\bolig\ny_kommentar_til_innlegg.html" />
+                    <Folder name="mytags">
+                        <File name="bolig\templates\bolig\mytags\under_menu.html" />
+                        <File name="bolig\templates\bolig\mytags\under_menu2.html" />
+                    </Folder>
+                </Folder>
+            </Folder>
+            <Folder name="templatetags">
+                <File name="bolig\templatetags\__init__.py" />
+                <File name="bolig\templatetags\under_plukk.py" />
+            </Folder>
+        </Folder>
+    </Project>
+</NotepadPlus>

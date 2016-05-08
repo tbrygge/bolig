@@ -1,0 +1,74 @@
+
+{% extends 'bolig/base.html' %}
+{% block content %}
+<!--{% load set_var %}-->
+
+	<div class = 'container' style = 'float: right;'>	
+   
+   <span style = 'float-right; font-size: 14px; margin-top: -5px:'>referat styret</span>
+   <div class="btn-group" style =' padding: 0px 40px 0px 0px;'>
+	{% for name, fref in styreref %}    
+		{% ifchanged name|slice:'14:' %}
+			</ul></div>	
+			<div class='btn btn-group' style= 'padding: 0px; margin-top: 5px;'>
+		    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style= 'margin-left: -6px;font-family: calibri; font-weight: bold;font-size:10pt;'>  20{{name|slice:'14:'}}
+			<span class="caret"></span></button>
+			<ul class="dropdown-menu">
+		{% endifchanged %}
+<!--
+		structuren under med slice, er betinget av browsere og sikkerhet. Tillater ikke
+		at man processerer lokale filer direkte. fref - peker til filene fra der hvor de 
+		ligger på server. Her plukker vi av alt foran "static" og putter http: til local host i stedet.
+		Når det legges ut på nettserver må dette korrigeres.
+		-->
+		
+       	<li><a href="{{domene2}}{{ fref }}" style='font-size: 12pt; font-weight: bold;' >{{ name }}</a></li>				
+	{% endfor %}
+	</ul>
+    </div>	
+	<div class='btn btn-group' style= 'padding: 0px; margin-top: 5px;'> 
+		<button class="btn btn-mini dropdown-toggle" type="button" data-toggle="dropdown" style= 'margin-left: -6px;font-family: calibri; font-weight: bold;font-size:10pt'>  Aarsmoter
+		<span class="caret"></span></button>
+		<ul class="dropdown-menu">
+		{% for name, fref in amoter %}
+			<li><a href="{{domene2}}{{ fref }}" style='font-size: 12pt; font-weight:bold;'>{{ name }}</a></li>
+		{% endfor %}
+		</ul>
+	</div>
+ </div> 
+    <h2 style= 'color: black; padding-left: 30px'><br><br>Styret</h2>
+	<div style = 'padding-left: 30px;'>
+	<div class = 'table'>
+	{% for c1, c2, c3, c4 in mylist %}
+		<div class= 'rad'>	
+			<div class = 'cmell' style='height = 10px;'></div>
+		</div>	
+		<div class= 'rad' style= 'font-size: 18px; font-style: italic; padding-left: 20px;'>	
+			
+				<div  style='width:100px'>{{c2.relasjon | slice:'7:'}}</div>
+				<div  style='width:200px'>{{c1.fnavn}} {{c1.enavn}}</div>
+				<div  style='width:100px'>{{c4}}</div>				 
+				<div  style='width:240px'><a href=""> {{c1.email}}</a></div>			
+			<div  style='width:140px'>{% if c3 != ' '%} {{c3.relasjon | slice:'7:'}}{% else %} {{''}} {% endif %}</div>
+					
+		</div>
+	{% endfor %}
+	
+	<h2>Valgkomite</h2>
+		<div class = 'rad'></div>
+	{% for c1, c2 in vlist %}
+		<div class= 'rad'>	
+			<div class = 'cmell' style='height = 20px;'></div>
+		</div>	
+		<div class= 'rad' style= 'font-size: 16px; font-style: italic; padding-left: 20px;'>	
+				<div style= 'width: 180px;'>{{c1.fnavn}} {{c1.enavn}}</div>
+				<div style = 'width: 160px'>{{c2}}</div>
+				<div style = 'width: 200px'><a href=''> {{c1.email}}</a></div>
+				<div>{{c1.telefon}}</div>
+		
+		</div>
+	{% endfor %}
+	</div>
+	</div><br><br>
+
+{% endblock %}	

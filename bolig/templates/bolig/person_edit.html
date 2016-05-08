@@ -1,0 +1,14 @@
+{% extends 'bolig/base.html' %}
+
+{% block content %}
+	<br>
+	<h3 style= 'color: black;'>Oppdatere/se persondata</h3>
+	<div class="comment" style= 'display: block;width: 60%;margin-left: 30px;font-family: Georgia; font-size: 12pt'> 
+	<form method="POST" class="post-form">{% csrf_token %}
+		{{ form.as_p }}		
+		<span style= 'position: fixed; margin-left: 0px'><button type="submit" class="save btn btn-default">Lagre</button></span>
+		
+	</form>
+	</div>
+	<br>
+{% endblock %}
